@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "DevPortfolio/1.0.0": {
+        "runtime": {
+          "DevPortfolio.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DevPortfolio/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
