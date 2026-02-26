@@ -16,6 +16,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult About()
+    {
+        return View();
+    }
+
     public IActionResult ServerTime()
     {
         var serverTime = DateTime.Now.ToString("F");
