@@ -29,3 +29,59 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/* Footer Styles */
+.footer {
+  background: linear-gradient(135deg, #1e2a3a 0%, #15232e 100%);
+  border-top: 3px solid #0d6efd;
+}
+
+.footer h5 {
+  color: #fff;
+  font-size: 1.1rem;
+  letter-spacing:1px;
+  padding-bottom: 10px;
+}
+
+.footer h5::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background: #0d6efd;
+}
+
+.footer a {
+  color: #0d6efd !important;
+  text-decoration: underline !important;
+}
+
+.footer .social-icons a {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align:center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.footer .social-icon a:hover {
+  background: #0d6efd;
+  transform: translateY(-3px);
+}
+
+/* Responsive Adjustments Footer */
+@media (max-width: 768px) {
+  .footer {
+    text-align:center;
+  }
+
+  .footer h5:after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

@@ -21,7 +21,6 @@ C:\DevProjects\DevPortfolio\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 C:\DevProjects\DevPortfolio\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\DevProjects\DevPortfolio\obj\Debug\net10.0\scopedcss\bundle\DevPortfolio.styles.css
 C:\DevProjects\DevPortfolio\obj\Debug\net10.0\scopedcss\projectbundle\DevPortfolio.bundle.scp.css
-C:\DevProjects\DevPortfolio\obj\Debug\net10.0\compressed\da5rx1mslm-{0}-b9sayid5wm-b9sayid5wm.gz
 C:\DevProjects\DevPortfolio\obj\Debug\net10.0\compressed\9isq8c8sek-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\DevProjects\DevPortfolio\obj\Debug\net10.0\compressed\c0lizmegow-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 C:\DevProjects\DevPortfolio\obj\Debug\net10.0\compressed\l7yk7sv9nd-{0}-bqjiyaj88i-bqjiyaj88i.gz
@@ -96,3 +95,4 @@ C:\DevProjects\DevPortfolio\obj\Debug\net10.0\DevPortfolio.pdb
 C:\DevProjects\DevPortfolio\obj\Debug\net10.0\DevPortfolio.genruntimeconfig.cache
 C:\DevProjects\DevPortfolio\obj\Debug\net10.0\ref\DevPortfolio.dll
 C:\DevProjects\DevPortfolio\obj\Debug\net10.0\DevPortfolio.sourcelink.json
+C:\DevProjects\DevPortfolio\obj\Debug\net10.0\compressed\da5rx1mslm-{0}-05wxvxnqqk-05wxvxnqqk.gz
