@@ -1,0 +1,40 @@
+@model Skill
+
+@{
+    ViewData["Title"] = $"{Model.Name} Details";
+}
+
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Skills">Skills</a></li>
+            <li class="breadcrumb-item active">@Model.Name</li>
+        </ol>
+    </nav>
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h2>@Model.Name</h2>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Category</dt>
+                <dd class="col-sm-9">@Model.Category</dd>
+
+                <dt class="col-sm-3">Proficiency</dt>
+                <dd class="col-sm-9">
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar" style="width: @Model.Level%">
+                            @Model.Level%
+                        </div>
+                    </div>
+                </dd>
+
+                <dt class="col-sm-3">Skill ID</dt>
+                <dd class="col-sm-9">#@Model.Id</dd>
+            </dl>
+            
+            <a asp-action="Skills" class="btn btn-secondary">Back to Skills</a>
+        </div>
+    </div>
+</div>

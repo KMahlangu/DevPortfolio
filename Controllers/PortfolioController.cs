@@ -7,57 +7,59 @@ namespace DevPortfolio.Controllers;
 
 public class PortfolioController : Controller
 {
+    // Helper method to get skills - avoids repeating code
+    private List<Skill> GetSkills()
+    {
+        return new List<Skill>
+        {
+            new Skill { Id = 1, Name = "C#", Level = 80, Category = "Backend" },
+            new Skill { Id = 2, Name = "ASP.NET Core", Level = 75, Category = "Backend" },
+            new Skill { Id = 3, Name = "JavaScript", Level = 70, Category = "Frontend" },
+            new Skill { Id = 4, Name = "HTML/CSS", Level = 85, Category = "Frontend" },
+            new Skill { Id = 5, Name = "SQL", Level = 65, Category = "Database" }
+        };
+    }
+
     // GET: /portfolio/skills
     public IActionResult Skills()
     {
-        // In a real application, you would typically retrieve this data from a database
-        var skills = new List<Skill>
-        {
-            new Skill { Id = 1, Name = "C#", Level = 80, Category = "Backend" },
-            new Skill { Id = 2, Name = "ASP.NET Core", Level = 75, Category = "Backend" },
-            new Skill { Id = 3, Name = "JavaScript", Level = 70, Category = "Frontend" },
-            new Skill { Id = 4, Name = "HTML/CSS", Level = 85, Category = "Frontend" },
-            new Skill { Id = 5, Name = "SQL", Level = 65, Category = "Database"}
-        };
+        var skills = GetSkills();
 
-        return View(skills); // Pass the list to view.
+        // Group skills by category (for the challenge!)
+        var groupedSkills = skills
+            .GroupBy(s => s.Category ?? "Uncategorized")
+            .OrderBy(g => g.Key);
+
+        return View(groupedSkills); // Pass grouped skills to view
     }
 
+    // GET: /portfolio/skillsdetails/5
     public IActionResult SkillsDetails(int id)
     {
-        // In a real application, you would typically retrieve this data from a database
-        var Skills = new List<Skill>
-        {
-            new Skill { Id = 1, Name = "C#", Level = 80, Category = "Backend" },
-            new Skill { Id = 2, Name = "ASP.NET Core", Level = 75, Category = "Backend" },
-            new Skill { Id = 3, Name = "JavaScript", Level = 70, Category = "Frontend" },
-            new Skill { Id = 4, Name = "HTML/CSS", Level = 85, Category = "Frontend" },
-            new Skill { Id = 5, Name = "SQL", Level = 65, Category = "Database"}
-        };
+        var skills = GetSkills();
 
-        // Find the Skill with matching ID
-        var skill = Skills.FirstOrDefault(s => s.Id == id);
+        // Find the skill with matching ID
+        var skill = skills.FirstOrDefault(s => s.Id == id);
 
-        if (Skills == null)
+        if (skill == null)  // ✅ Fixed: check if skill is null, not the list
         {
             return NotFound(); // Return 404 if not found
         }
-        
-        // Pass the Skill to the view
-        return View(skill);
+
+        return View(skill); // Pass the single skill to view
     }
 
     // GET: /portfolio/projects
     public IActionResult Projects()
     {
-
+        // You can add hardcoded projects here later
         return View();
     }
 
+    // GET: /portfolio/certificates
     public IActionResult Certificates()
     {
+        // You can add hardcoded certificates here later
         return View();
     }
-
-
 }

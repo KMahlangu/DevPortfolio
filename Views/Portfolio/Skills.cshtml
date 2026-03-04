@@ -1,27 +1,71 @@
-@model List<DevPortfolio.Models.Skill>
+@model IEnumerable<IGrouping<string, DevPortfolio.Models.Skill>>
 
 @{
     ViewData["Title"] = "My Skills";
 }
 
-<h1>Technical Skills</h1>
+<h1 class="mb-4">My Skills</h1>
 
-<div class="row">
-    @foreach (var skill in Model)
-    {
-        <div class="col-md-4 mb-3">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">@skill.Name</h5>
-                    <p class="card-text">Category: @skill.Category</p>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" style="width: 60%">
-                            @skill.Level
+@foreach (var categoryGroup in Model)
+{
+    <div class="mb-5">
+        <!-- Category Header -->
+        <h2 class="mb-3">
+            <span class="badge bg-primary">@categoryGroup.Key</span>
+            <small class="text-muted fs-6">(@categoryGroup.Count() skills)</small>
+        </h2>
+
+        <!-- Skills in this category -->
+        <div class="row">
+            @foreach (var skill in categoryGroup.OrderByDescending(s => s.Level))
+            {
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">@skill.Name</h5>
+                                <span class="badge @(skill.Level >= 80 ? "bg-success" :
+                                                    skill.Level >= 60 ? "bg-info" :
+                                                    "bg-warning")">
+                                    @skill.Level%                    
+                                </span>"
+                            </div>
+
+                            <div class="progress" style="height: 8px">
+                                <div class="progress-bar" 
+                                    style="width: @skill.Level%;
+                                            background: linear-gradient(90deg, #667eea, #764ba2);">
+                                </div>
+                            </div>
+
+                            <small class="text-muted d-block mt-2">
+                                @switch (skill.Level)
+                                {
+                                    case >= 80:
+                                        <span>⭐ Expert</span>
+                                        break;
+                                    case >= 60:
+                                        <span>📈 Advanced</span>
+                                        break;
+                                    case >= 40:
+                                        <span>📚 Intermediate</span>
+                                        break;
+                                    default:
+                                        <span>🌱 Beginner</span>
+                                        break;
+                                }
+                            </small>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
-    }
-</>
+    </div>
+}
 
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No Skills found. Add some skills in the admin area!
+    </div>
+}
