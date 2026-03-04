@@ -10,6 +10,6 @@ public class Project
     [Required(ErrorMessage = "Project description is required.")]
     [DataType(DataType.MultilineText)]
     public string Description { get; set; } = string.Empty;
-    [Required(ErrorMessage = "Please enter a valid URL.")]
+    [Url(ErrorMessage = "Please enter a valid URL.")]
     public string? GitHubUrl { get; set; } // e.g., GitHub repo or live demo
 }

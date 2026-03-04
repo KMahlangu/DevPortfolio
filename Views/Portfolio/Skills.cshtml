@@ -1,0 +1,27 @@
+@model List<DevPortfolio.Models.Skill>
+
+@{
+    ViewData["Title"] = "My Skills";
+}
+
+<h1>Technical Skills</h1>
+
+<div class="row">
+    @foreach (var skill in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@skill.Name</h5>
+                    <p class="card-text">Category: @skill.Category</p>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" style="width: 60%">
+                            @skill.Level
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</>
+
