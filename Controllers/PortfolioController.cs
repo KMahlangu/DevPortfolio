@@ -53,7 +53,27 @@ public class PortfolioController : Controller
     public IActionResult Projects()
     {
         // You can add hardcoded projects here later
-        return View();
+        var projects = new List<Project>
+        {
+            new Project
+            {
+                Id = 1,
+                Title = "Portfolio Website",
+                Description = "My personal portfolio built with ASP.NET Core MVC",
+                GitHubUrl = "https://github.com/yourusername/portfolio",
+                Technologies = "C#, ASP.NET Core, Bootstrap"
+            },
+
+            new Project {
+            Id = 2,
+            Title = "Task Manager App",
+            Description = "A simple task management application",
+            LiveUrl = "https://example.com",
+            Technologies = "JavaScript, Node.js, MongoDB"
+            },
+        };
+
+        return View(projects);
     }
 
     // GET: /portfolio/certificates

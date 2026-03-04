@@ -18,10 +18,10 @@
         </div>
         <div class="card-body">
             <dl class="row">
-                <dt class="col-sm-3">Category</dt>
+                <dt class="col-sm-3">Category:</dt>
                 <dd class="col-sm-9">@Model.Category</dd>
 
-                <dt class="col-sm-3">Proficiency</dt>
+                <dt class="col-sm-3">Proficiency:</dt>
                 <dd class="col-sm-9">
                     <div class="progress" style="height: 25px;">
                         <div class="progress-bar" style="width: @Model.Level%">
@@ -30,11 +30,11 @@
                     </div>
                 </dd>
 
-                <dt class="col-sm-3">Skill ID</dt>
+                <dt class="col-sm-3">Skill ID:</dt>
                 <dd class="col-sm-9">#@Model.Id</dd>
             </dl>
             
-            <a asp-action="Skills" class="btn btn-secondary">Back to Skills</a>
+            <a asp-action="Skills" class="btn btn-success">Back to Skills</a>
         </div>
     </div>
 </div>
