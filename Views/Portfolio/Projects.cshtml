@@ -1,0 +1,42 @@
+@model List<DevPortfolio.Models.Project>
+
+@{
+    ViewData["Title"] = "My Projects";
+}
+
+<h1>My Projects</h1>
+
+<div class="row">
+    @foreach (var project in Model)
+    {
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                @if (!string.IsNullOrEmpty(project.ImageUrl))
+                {
+                    <img src="@project.ImageUrl" class="card-img-top" alt="@project.Title">
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@project.Title</h5>
+                    <p class="card-text">@project.Description</p>
+                    
+                    @if (!string.IsNullOrEmpty(project.Technologies))
+                    {
+                        <p class="text-muted">
+                            <small>Tech: @project.Technologies</small>
+                        </p>
+                    }
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    @if (!string.IsNullOrEmpty(project.GitHubUrl))
+                    {
+                        <a href="@project.GitHubUrl" target="_blank" class="btn btn-sm btn-dark">GitHub</a>
+                    }
+                    @if (!string.IsNullOrEmpty(project.LiveUrl))
+                    {
+                        <a href="@project.LiveUrl" target="_blank" class="btn btn-sm btn-primary">Live Demo</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
