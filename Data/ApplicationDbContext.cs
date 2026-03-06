@@ -104,6 +104,13 @@ public class ApplicationDbContext : DbContext
            entity.Property(c => c.IssuingOrganization).IsRequired().HasMaxLength(200);
            // Add other configurations as needed
        });
+
+        // Optional: Add index for faster serching
+        modelBuilder.Entity<ContactMessages>()
+            .HasIndex(m => m.DateSent);
+
+        modelBuilder.Entity<ContactMessages>()
+            .HasIndex(m => m.IsRead);
     }
     
     // These represent databse tables
@@ -111,4 +118,5 @@ public class ApplicationDbContext : DbContext
     public DbSet<Project> Projects { get; set; }
     public DbSet<Service> Services { get; set; }
     public DbSet<Certificate> Certificates { get; set; }
+     public DbSet<ContactMessages> ContactMessages { get; set; }
 }
