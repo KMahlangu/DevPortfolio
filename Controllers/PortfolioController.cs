@@ -1,29 +1,26 @@
+using DevPortfolio.Data;
 using DevPortfolio.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+
 
 namespace DevPortfolio.Controllers;
 
 public class PortfolioController : Controller
 {
     // Helper method to get skills - avoids repeating code
-    private List<Skill> GetSkills()
+    private readonly ApplicationDbContext _context;
+
+    public PortfolioController(ApplicationDbContext context)
     {
-        return new List<Skill>
-        {
-            new Skill { Id = 1, Name = "C#", Level = 80, Category = "Backend" },
-            new Skill { Id = 2, Name = "ASP.NET Core", Level = 75, Category = "Backend" },
-            new Skill { Id = 3, Name = "JavaScript", Level = 70, Category = "Frontend" },
-            new Skill { Id = 4, Name = "HTML/CSS", Level = 85, Category = "Frontend" },
-            new Skill { Id = 5, Name = "SQL", Level = 65, Category = "Database" }
-        };
+        _context = context;
     }
 
     // GET: /portfolio/skills
     public IActionResult Skills()
     {
-        var skills = GetSkills();
+        var skills = _context.Skills.ToList();
 
         // Group skills by category (for the challenge!)
         var groupedSkills = skills
@@ -36,7 +33,7 @@ public class PortfolioController : Controller
     // GET: /portfolio/skillsdetails/5
     public IActionResult SkillsDetails(int id)
     {
-        var skills = GetSkills();
+        var skills = _context.Skills.ToList();
 
         // Find the skill with matching ID
         var skill = skills.FirstOrDefault(s => s.Id == id);
@@ -52,26 +49,7 @@ public class PortfolioController : Controller
     // GET: /portfolio/projects
     public IActionResult Projects()
     {
-        // You can add hardcoded projects here later
-        var projects = new List<Project>
-        {
-            new Project
-            {
-                Id = 1,
-                Title = "Portfolio Website",
-                Description = "My personal portfolio built with ASP.NET Core MVC",
-                GitHubUrl = "https://github.com/yourusername/portfolio",
-                Technologies = "C#, ASP.NET Core, Bootstrap"
-            },
-
-            new Project {
-            Id = 2,
-            Title = "Task Manager App",
-            Description = "A simple task management application",
-            LiveUrl = "https://example.com",
-            Technologies = "JavaScript, Node.js, MongoDB"
-            },
-        };
+        var projects = _context.Projects.ToList();
 
         return View(projects);
     }
@@ -80,6 +58,8 @@ public class PortfolioController : Controller
     public IActionResult Certificates()
     {
         // You can add hardcoded certificates here later
+        var certificates = _context.Certificates.ToList();
+        
         return View();
     }
 }

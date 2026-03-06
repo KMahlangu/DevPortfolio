@@ -1,87 +1,69 @@
-html {
-  font-size: 14px;
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 100px 0;
+    margin-bottom: 2rem;
+    image-rendering: ;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+/* Cards */
+.card {
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+/* Skill Progress Bars */
+.progress {
+    height: 10px;
+    border-radius: 5px;
 }
 
-body {
-  margin-bottom: 60px;
+.progress-bar {
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 5px;
+    transition: width 1s ease;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Project Cards */
+.project-card {
+    height: 100%;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.project-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
 }
 
-/* Footer Styles */
-.footer {
-  background: linear-gradient(135deg, #1e2a3a 0%, #15232e 100%);
-  border-top: 3px solid #0d6efd;
+/* Service Icons */
+.service-icon {
+    font-size: 2.5rem;
+    color: #667eea;
+    margin-bottom: 1rem;
 }
 
-.footer h5 {
-  color: #fff;
-  font-size: 1.1rem;
-  letter-spacing:1px;
-  padding-bottom: 10px;
+/* Footer */
+footer a {
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-.footer h5::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 50px;
-  height: 2px;
-  background: #0d6efd;
+footer a:hover {
+    color: white !important;
 }
 
-.footer a {
-  color: #0d6efd !important;
-  text-decoration: underline !important;
-}
-
-.footer .social-icons a {
-  display: inline-block;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
-  text-align:center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.footer .social-icon a:hover {
-  background: #0d6efd;
-  transform: translateY(-3px);
-}
-
-/* Responsive Adjustments Footer */
+/* Responsive */
 @media (max-width: 768px) {
-  .footer {
-    text-align:center;
-  }
-
-  .footer h5:after {
-    left: 50%;
-    transform: translateX(-50%);
-  }
+    .hero-section {
+        padding: 50px 0;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
 }
