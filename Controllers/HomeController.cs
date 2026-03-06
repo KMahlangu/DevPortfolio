@@ -41,7 +41,25 @@ public class HomeController : Controller
 
     public IActionResult Contact()
     {
+
         return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Contact(ContactViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            // for now, just show success message
+            //Later we'll add actual email sending
+            TempData["Success"] = "Thank you for your message! I'll get back to you soon";
+            return RedirectToAction(nameof(Contact));
+        }
+
+
+        // if we got here, something went wrong - redisplay from 
+        return View(model);
     }
 
     public IActionResult ServerTime()

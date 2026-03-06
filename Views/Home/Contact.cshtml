@@ -1,5 +1,82 @@
+@model ContactViewModel
+
 @{
     ViewData["Title"] = "Contact Me";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <h1 class="text-center mb-4">Get In Touch</h1>
+        
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["Success"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+        
+        <div class="card">
+            <div class="card-body">
+                <form asp-action="Contact" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Name" class="form-label"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Your name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" placeholder="your@email.com" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Subject" class="form-label"></label>
+                        <input asp-for="Subject" class="form-control" placeholder="What's this about?" />
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Message" class="form-label"></label>
+                        <textarea asp-for="Message" class="form-control" rows="5" placeholder="Your message..."></textarea>
+                        <span asp-validation-for="Message" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-send"></i> Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Contact Info -->
+        <div class="row mt-5">
+            <div class="col-md-4 text-center mb-3">
+                <i class="bi bi-envelope fs-1 text-primary"></i>
+                <h5>Email</h5>
+                <p>mosaprojects1@gmail.com</p>
+            </div>
+            <div class="col-md-4 text-center mb-3">
+                <i class="bi bi-telephone fs-1 text-primary"></i>
+                <h5>Phone</h5>
+                <p>+27 61 525 0332</p>
+            </div>
+            <div class="col-md-4 text-center mb-3">
+                <i class="bi bi-geo-alt fs-1 text-primary"></i>
+                <h5>Location</h5>
+                <p>Pretoria, South Africa</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

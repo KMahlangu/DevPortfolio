@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\DevProjects\\DevPortfolio\\DevPortfolio.csproj": {}
+    "C:\\DevProjects\\DevPortfolio\\DevPortfolio.csproj": {}
   },
   "projects": {
-    "c:\\DevProjects\\DevPortfolio\\DevPortfolio.csproj": {
+    "C:\\DevProjects\\DevPortfolio\\DevPortfolio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\DevProjects\\DevPortfolio\\DevPortfolio.csproj",
+        "projectUniqueName": "C:\\DevProjects\\DevPortfolio\\DevPortfolio.csproj",
         "projectName": "DevPortfolio",
-        "projectPath": "c:\\DevProjects\\DevPortfolio\\DevPortfolio.csproj",
+        "projectPath": "C:\\DevProjects\\DevPortfolio\\DevPortfolio.csproj",
         "packagesPath": "C:\\Users\\summe\\.nuget\\packages\\",
-        "outputPath": "c:\\DevProjects\\DevPortfolio\\obj\\",
+        "outputPath": "C:\\DevProjects\\DevPortfolio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
