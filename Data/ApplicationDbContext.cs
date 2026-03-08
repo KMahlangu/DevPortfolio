@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DevPortfolio.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
@@ -5,7 +7,7 @@ using Microsoft.Win32.SafeHandles;
 
 namespace DevPortfolio.Data;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -17,6 +19,7 @@ public class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        // my Exisiting Seed Data
         // Seed Skills
         modelBuilder.Entity<Skill>().HasData
         (
@@ -118,5 +121,5 @@ public class ApplicationDbContext : DbContext
     public DbSet<Project> Projects { get; set; }
     public DbSet<Service> Services { get; set; }
     public DbSet<Certificate> Certificates { get; set; }
-     public DbSet<ContactMessages> ContactMessages { get; set; }
+    public DbSet<ContactMessages> ContactMessages { get; set; }
 }
