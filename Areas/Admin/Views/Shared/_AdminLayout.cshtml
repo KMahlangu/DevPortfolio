@@ -1,3 +1,6 @@
+@using DevPortfolio
+@using DevPortfolio.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +18,7 @@
             </a>
             <div class="d-flex">
                 <span class="navbar-text me-3">Hello, @User.Identity.Name</span>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-outline-light me-2">
+                <a href="@Url.Action("Index", "Home", new { area = "" })" class="btn btn-outline-light me-2">
                     <i class="bi bi-eye"></i> View Site
                 </a>
                 <a asp-area="Identity" asp-page="/Account/Logout" class="btn btn-danger">

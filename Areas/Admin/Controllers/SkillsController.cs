@@ -1,8 +1,10 @@
+using System.Net.Sockets;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DevPortfolio.Data;
 using DevPortfolio.Models;
+using System.Threading.Tasks;
 
 namespace DevPortfolio.Areas.Admin.Controllers;  // ✅ CORRECT NAMESPACE
 
@@ -24,6 +26,27 @@ public class SkillsController : Controller
         return View(skills);
     }
 
+    // GET: Admin/Skills/Create
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    // POST: Admin/Skills/Create
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create([Bind("Name,Level,Category")] Skill skill)
+    {
+        if (ModelState.IsValid)
+        {
+            _context.Add(skill);
+            await _context.SaveChangesAsync();
+            TempData["Success"] = $"Skill {@skill.Name} created successfully";
+            return RedirectToAction(nameof(Index));
+        }
+        return View(skill);
+    }
+
     // GET: Admin/Skills/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
@@ -40,23 +63,36 @@ public class SkillsController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, Skill skill)
     {
-        if (id != skill.Id) return NotFound();
+        // CRITICAL: Verify the ID from route matches the skill ID
+        if (id != skill.Id)
+        {
+            return NotFound();
+        }
 
         if (ModelState.IsValid)
         {
             try
             {
+                // Method 1: Update (more efficient)
                 _context.Update(skill);
                 await _context.SaveChangesAsync();
-                TempData["Success"] = "Skill updated successfully!";
+                TempData["Success"] = $"Skill '{skill.Name}' updated successfully!";
+                return RedirectToAction(nameof(Index));
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SkillExists(skill.Id)) return NotFound();
-                else throw;
+                if (!SkillExists(skill.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
-            return RedirectToAction(nameof(Index));
+
         }
+        // If we got this far, something failed - redisplay form
         return View(skill);
     }
 
