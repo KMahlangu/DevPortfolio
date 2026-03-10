@@ -1,0 +1,64 @@
+@model IEnumerable<DevPortfolio.Models.Project>
+
+@{
+    ViewData["Title"] = "Manage Projects";
+    Layout = "_AdminLayout";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="bi bi-kanban"></i> Manage Projects</h1>
+    <a asp-area="Admin" asp-controller="Projects" asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Add New Project
+    </a>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill"></i> @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="row">
+    @foreach (var project in Model)
+    {
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                @if (!string.IsNullOrEmpty(project.ImageUrl))
+                {
+                    <img src="@project.ImageUrl" class="card-img-top" style="height: 200px; object-fit: cover;" alt="@project.Title">
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@project.Title</h5>
+                    <p class="card-text">@project.Description</p>
+                    <p class="text-muted"><small>Tech: @project.Technologies</small></p>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <div class="btn-group" role="group">
+                        <a asp-area="Admin" asp-controller="Projects" asp-action="Edit" 
+                           asp-route-id="@project.Id" class="btn btn-sm btn-warning">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a asp-area="Admin" asp-controller="Projects" asp-action="Details" 
+                           asp-route-id="@project.Id" class="btn btn-sm btn-info">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        <a asp-area="Admin" asp-controller="Projects" asp-action="Delete" 
+                           asp-route-id="@project.Id" class="btn btn-sm btn-danger"
+                           onclick="return confirm('Delete @project.Title?');">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="text-center py-5">
+        <p class="text-muted">No projects found. Click "Add New Project" to create one.</p>
+    </div>
+}
