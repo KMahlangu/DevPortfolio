@@ -58,15 +58,16 @@ app.UseAuthorization();
 app.MapStaticAssets();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
-    
-app.MapControllerRoute(
     name: "areas",
 
     pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
 );
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}")
+    .WithStaticAssets();
+
 
 app.MapRazorPages(); // This enables Identity UI pages
 
