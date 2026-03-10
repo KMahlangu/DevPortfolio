@@ -26,6 +26,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <!-- Public navigation items (visible to everyone) -->
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
@@ -44,6 +45,60 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
                     </li>
+                    
+                    <!-- 🔐 ADMIN LINK - Only visible when logged in -->
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" 
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-shield-lock-fill"></i> Admin
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                                <li>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                                        <i class="bi bi-speedometer2"></i> Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Skills" asp-action="Index">
+                                        <i class="bi bi-tools"></i> Manage Skills
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Projects" asp-action="Index">
+                                        <i class="bi bi-kanban"></i> Manage Projects
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Services" asp-action="Index">
+                                        <i class="bi bi-gear"></i> Manage Services
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Messages" asp-action="Index">
+                                        <i class="bi bi-envelope"></i> View Messages
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item text-danger" asp-area="Identity" 
+                                       asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home")">
+                                        <i class="bi bi-box-arrow-right"></i> Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <!-- Login link (visible when NOT logged in) -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">
+                                <i class="bi bi-box-arrow-in-right"></i> Login
+                            </a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
@@ -57,33 +112,7 @@
     <!-- Footer -->
     <footer class="bg-dark text-white py-4 mt-5">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>My Portfolio</h5>
-                    <p>Building web applications with ASP.NET Core</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a asp-controller="Home" asp-action="Index" class="text-white-50">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="About" class="text-white-50">About</a></li>
-                        <li><a asp-controller="Portfolio" asp-action="Skills" class="text-white-50">Skills</a></li>
-                        <li><a asp-controller="Portfolio" asp-action="Projects" class="text-white-50">Projects</a></li>
-                        <li><a asp-controller="Home" asp-action="Services" class="text-white-50">Services</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Connect</h5>
-                    <div class="d-flex gap-3">
-                        <a href="https://github.com/KMahlangu" class="text-white" target="blank"><i class="bi bi-github fs-4"></i></a>
-                        <a href="https://www.linkedin.com/in/kutlwano-mahlangu/" class="text-white" target="blank"><i class="bi bi-linkedin fs-4"></i></a>
-                        <a href="" class="text-white" target="blank"><i class="bi bi-twitter-x fs-4"></i></a>
-                        <a href="#" class="text-white" target="blank"><i class="bi bi-stack-overflow fs-5"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr class="bg-secondary">
-            <p class="text-center mb-0">&copy; @DateTime.Now.Year - My Portfolio. All rights reserved.</p>
+            <p class="text-center mb-0">&copy; @DateTime.Now.Year - My Portfolio</p>
         </div>
     </footer>
 
