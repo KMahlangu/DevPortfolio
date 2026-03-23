@@ -1,6 +1,3 @@
-@using DevPortfolio
-@using DevPortfolio.Models
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +13,13 @@
             <a class="navbar-brand" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
                 <i class="bi bi-shield-lock"></i> Admin Dashboard
             </a>
-            <div class="d-flex">
-                <span class="navbar-text me-3">Hello, @User.Identity.Name</span>
-                <a href="@Url.Action("Index", "Home", new { area = "" })" class="btn btn-outline-light me-2">
+
+            <!-- Right side of navbar -->
+            <div class="d-flex align-items-center">
+                <!-- User display from partial view -->
+                @await Html.PartialAsync("_AdminUserDisplay")
+
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-outline-light me-2">
                     <i class="bi bi-eye"></i> View Site
                 </a>
                 <a asp-area="Identity" asp-page="/Account/Logout" class="btn btn-danger">
@@ -54,6 +55,16 @@
                                 <i class="bi bi-gear"></i> Services
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Messages" asp-action="Index">
+                                <i class="bi bi-envelope"></i> Messages
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Certificates" asp-action="Index">
+                                <i class="bi bi-patch-check"></i> Certificates
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -66,8 +77,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-     <!-- ✅ FIX: Make Scripts section optional -->
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

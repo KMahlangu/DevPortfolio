@@ -1,0 +1,20 @@
+@{
+    var displayName = "Admin";
+    var isAuthenticated = false;
+
+    if (User.Identity != null)
+    {
+        isAuthenticated = User.Identity.IsAuthenticated;
+        if (isAuthenticated)
+        {
+            displayName = User.Identity.Name ?? "Admin";
+        }
+    }
+}
+
+@if (isAuthenticated)
+{
+    <span class="navbar-text me-3 text-white">
+        <i class="bi bi-person-circle"></i> Hello, @displayName
+    </span>
+}

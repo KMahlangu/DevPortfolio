@@ -35,7 +35,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
                 Id = 2,
                 Name = "Javascript",
                 Level = 70,
-                Category = "Froentend",
+                Category = "Frontend",
             },
             new Skill
             {
@@ -103,23 +103,23 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
         modelBuilder.Entity<Certificate>(entity =>
        {
            entity.HasKey(c => c.Id);
-           entity.Property(c => c.Name).IsRequired().HasMaxLength(200);
+           entity.Property(c => c.Title).IsRequired().HasMaxLength(200);
            entity.Property(c => c.IssuingOrganization).IsRequired().HasMaxLength(200);
            // Add other configurations as needed
        });
 
-        // Optional: Add index for faster serching
-        modelBuilder.Entity<ContactMessages>()
+        // Optional: Add index for faster searching
+        modelBuilder.Entity<ContactMessage>()
             .HasIndex(m => m.DateSent);
 
-        modelBuilder.Entity<ContactMessages>()
+        modelBuilder.Entity<ContactMessage>()
             .HasIndex(m => m.IsRead);
     }
     
-    // These represent databse tables
+    // These represent database tables
     public DbSet<Skill> Skills { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<Service> Services { get; set; }
     public DbSet<Certificate> Certificates { get; set; }
-    public DbSet<ContactMessages> ContactMessages { get; set; }
+    public DbSet<ContactMessage> ContactMessages { get; set; }
 }
