@@ -38,5 +38,29 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card text-white bg-info">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-title">Messages</h6>
+                            <h2 class="mb-0">@ViewBag.MessagesCount</h2>
+                            @if (ViewBag.UnreadMessages > 0)
+                            {
+                                <span class="badge bg-danger">@ViewBag.UnreadMessages unread</span>
+                            }
+                        </div>
+                        <i class="bi bi-envelope fs-1 opacity-50"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a asp-area="Admin" asp-controller="Messages" asp-action="Index"
+                       class="text-white text-decoration-none">
+                        View Messages <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

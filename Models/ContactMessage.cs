@@ -1,41 +1,40 @@
-using System.Net;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
-using System.Runtime.Intrinsics.X86;
 
 namespace DevPortfolio.Models;
 
-public class ContactMessages
+public class ContactMessage
 {
-    public int Id { get; set; } 
+    public int Id { get; set; }
 
-    [Display(Name = "First Name")]
-    [Required(ErrorMessage = "Please enter your name")]
+    [Required(ErrorMessage = "Name is required")]
+    [StringLength(100, MinimumLength = 2, ErrorMessage = "Name must be between 2 and 100 characters")]
+    [Display(Name = "Full Name")]
     public string Name { get; set; } = string.Empty;
-    [Display(Name = "Email")]
-    [Required(ErrorMessage = "Please enter your Email")]
-    [EmailAddress(ErrorMessage = "Enter a valid email address")]
-    public string Email { get; set; }
+
+    [Required(ErrorMessage = "Email is required")]
+    [EmailAddress(ErrorMessage = "Invalid email address")]
+    [StringLength(100)]
+    [Display(Name = "Email Address")]
+    public string Email { get; set; } = string.Empty;
+
     [Required(ErrorMessage = "Subject is required")]
     [StringLength(200, ErrorMessage = "Subject cannot exceed 200 characters")]
-    public string Subject { get; set; }
+    public string Subject { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Message is required")]
     [StringLength(1000, MinimumLength = 10, ErrorMessage = "Message must be between 10 and 1000 characters")]
     [DataType(DataType.MultilineText)]
-    public string Message { get; set; }
+    public string Message { get; set; } = string.Empty;
 
-    // Metadata - automatically track when message was sent
-    [Display(Name = "Date Sent")]
     [DataType(DataType.DateTime)]
+    [Display(Name = "Date Sent")]
     public DateTime DateSent { get; set; }
 
-    // Status tracking
     [Display(Name = "Is Read")]
     public bool IsRead { get; set; }
 
-    [Display(Name = "Date Read")]
     [DataType(DataType.DateTime)]
+    [Display(Name = "Date Read")]
     public DateTime? DateRead { get; set; }
 
     [Display(Name = "IP Address")]
@@ -43,5 +42,4 @@ public class ContactMessages
 
     [Display(Name = "User Agent")]
     public string? UserAgent { get; set; }
-
 }

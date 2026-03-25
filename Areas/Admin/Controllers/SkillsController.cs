@@ -26,6 +26,26 @@ public class SkillsController : Controller
         return View(skills);
     }
 
+     // GET: Admin/Skills/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || id <= 0)
+            {
+                return NotFound();
+            }
+
+            var skill = await _context.Skills
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (skill == null)
+            {
+                return NotFound();
+            }
+
+            return View(skill);
+        }
+
+
     // GET: Admin/Skills/Create
     public IActionResult Create()
     {

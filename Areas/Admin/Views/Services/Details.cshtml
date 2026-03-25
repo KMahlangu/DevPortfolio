@@ -1,0 +1,86 @@
+@model DevPortfolio.Models.Service
+
+@{
+    ViewData["Title"] = $"Service Details - {Model.Title}";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1><i class="bi bi-gear text-primary"></i> Service Details</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Services" asp-action="Index">Services</a></li>
+                    <li class="breadcrumb-item active">@Model.Title</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <a asp-area="Admin" asp-controller="Services" asp-action="Edit" asp-route-id="@Model.Id"
+               class="btn btn-warning me-2">
+                <i class="bi bi-pencil"></i> Edit
+            </a>
+            <a asp-area="Admin" asp-controller="Services" asp-action="Index"
+               class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+        </div>
+    </div>
+
+    <!-- Details Card -->
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="bi bi-info-circle"></i> Service Information</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width: 200px;">ID</th>
+                            <td><strong>@Model.Id</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Icon</th>
+                            <td>
+                                @if (!string.IsNullOrEmpty(Model.IconClass))
+                                {
+                                    <i class="bi @Model.IconClass fs-1 text-primary"></i>
+                                    <span class="ms-2">@Model.IconClass</span>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Title</th>
+                            <td><h4>@Model.Title</h4></td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>@Model.Description</td>
+                        </tr>
+                        <tr>
+                            <th>Display Order</th>
+                            <td>@Model.DisplayOrder</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>
+                                @if (Model.IsActive)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Inactive</span>
+                                }
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

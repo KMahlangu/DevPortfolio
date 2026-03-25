@@ -69,6 +69,25 @@ public class ProjectsController : Controller
         return View(project);
     }
 
+    // GET: Admin/Projects/Details/5
+    public async Task<IActionResult> Details(int? id)
+    {
+        if (id == null || id <= 0)
+        {
+            return NotFound();
+        }
+
+        var project = await _context.Projects
+            .FirstOrDefaultAsync(m => m.Id == id);
+
+        if (project == null)
+        {
+            return NotFound();
+        }
+
+        return View(project);
+    }
+
     // GET: Admin/Projects/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
