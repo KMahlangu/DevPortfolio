@@ -1,0 +1,32 @@
+[33m048ef7a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbackup-seniordev[m[33m, [m[1;32mseniordev[m[33m)[m chore: stop tracking compiled binaries and database file
+[33mb2d7efb[m chore: stop tracking compiled binaries and database file
+[33ma75ec4e[m Update .gitignore to exclude bin, obj, and database files
+[33mb8bbecb[m Complete Project
+[33m65b3f2e[m Added appsettings
+[33m89010e7[m emailsendgrid
+[33mbfa37d3[m Day 16: Add search and filter functionality to Projects page
+[33m07b59fd[m Day 15: Add SendGrid email service for contact form
+[33m5eb26e9[m[33m ([m[1;31morigin/seniordev[m[33m)[m Completed Application
+[33m4811d07[m Updated Projects
+[33mb1c9e1e[m Added projects CRUD with image upload
+[33mab2f9ab[m Added Projects CRU with image upload
+[33mb8d4784[m Added Skills CRUD in admin
+[33mf5e4cf0[m Added Admin Skill in Area
+[33m14958fb[m Added admin area with authentication
+[33m83e9671[m Added authentication and Identity
+[33mfdc06f0[m Added Validation to ContactMesaegClass
+[33mbda2a0c[m Completed the first Week Tasks
+[33m85d38ad[m Added conact form with validation
+[33m36428d4[m Database seeding and controller updates
+[33m19e00c1[m Added databse with EF Core
+[33mbd83ea2[m Added all public pages
+[33m5e681bb[m Edited frontend Skills page
+[33m12ff86a[m Added Skills page
+[33md15aa68[m Updated the validations
+[33m83f74e8[m Added Skill and Project Models
+[33mf506c33[m Adds About and Contact Page and Partial View
+[33mfea8edd[m Added About ViewPage
+[33m23f7cba[m Added the About method to Home Controllers
+[33m4fb8f35[m Added the About method to Home Controller
+[33maf525ef[m Modified Home Page Title
+[33ma980ce5[m Intitial Commit: ASP.NET Core MVC Project

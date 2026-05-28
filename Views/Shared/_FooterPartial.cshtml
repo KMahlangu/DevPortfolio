@@ -1,0 +1,106 @@
+@*
+    Footer Partial View
+    This partial view contains the site footer with contact info, social links and copyrights notice.
+    Usage: @await Html.PartialAsync("_FooterPartial") in the main layout or any view.
+*@
+
+<footer class="footer bg-dark text-white py-4 mt-auto">
+    <div class="container">
+        <div class="row">
+            <!-- Column 1: About -->
+            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                <h5 class="text-uppercase mb-4">About Me</h5>
+                <p class="small">
+                    I'm an aspiring ASP.NET COre developer passionate about building clean, maintainable web applications. This portfolio showcases my skills, projects and certificates.
+                </p>
+            </div>
+
+            <!-- Column 2: Quik Links -->
+            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                <h5 class="text-uppercase mb-4">Quick Links<h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="/" class="text-white-50 text-decoration-none">Home</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="/home/About" class="text-white-50 text-decoration0none">About</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="/Portfolio/Skills" class="text-white-50 text-decoration-none">Skills</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="/Home/Services" class="text-white-50 text-decoration-none">Services</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href=/Portfolio/Projects" class="text-white-50 text-decoration-none">Projects</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="/Home/Contact" class="text-white-50 text-decoration-none">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Contact Info -->
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                <h5 class="text-uppercase mb-4">Contact Info</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="bi bi-envelope me-2"></i>
+                        <a href="mailto:mosaproject1@gmail.com" class="text-white-50 text-decoration-none">mosaprojects1@gmail.com</a>
+                    </li>
+                    <li class=mb-2>
+                        <i class="bi bi-github me-2"></i>
+                        <a href="https://github.com/KMahlangu" target="_blank" class="text-white-50 text-decoration-none">GitHub</a>
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-linkedin me-2"></i>
+                        <a href="https://www.linkedin.com/in/kutlwano-mahlangu/" target="_blank" class="text-white-50 text-decoration-none">LinkedIn</a>
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-twitter-x me-2"></i>
+                        <a href="https://twitter.com/" target="_blank" class="text-white-50 text-decoration-none">Twitter</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Column 4: NewsLetter/Social -->
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-uppercase mb-4">Stay Connected</h5>
+                <p class="small">Subscribe to get updates on new projects</p>
+                <form class="mb-3">
+                    <div class="input-group">
+                        <input type="email" class="form-control form-control-sm" placeholder="Email Address" aria-label="Email" />
+                        <button class="btn btn-primary btn-sm" type="submit">Subscribe</button>
+                    </div>
+                </form>
+
+                <!-- Social Icons -->
+                <div class="mt-3">
+                    <a href="https://https://github.com/KMahlangu" class="text-white me-3">
+                        <i class="bi bi-github fs-5"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/kutlwano-mahlangu/" class="text-white me-3">
+                        <i class="bi bi-linkedin fs-5"></i>
+                    </a>
+                    <a href="" class="text-white me-3">
+                        <i class="bi bi-twitter-x fs-5"></i>
+                    </a>
+                    <a href="#" class="text-white">
+                        <i class="bi bi-stack-overflow fs-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <hr class="bg-secondary" />
+                <p class="text-center text-white-50 small mb-0">
+                    &copy; @DateTime.Now.Year - DevPortfolio. All rights reserved.
+                    Build with ASP.NET Core MVC. <a href="/Home/Privacy" class="text-white-50 text-decoration-none">Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

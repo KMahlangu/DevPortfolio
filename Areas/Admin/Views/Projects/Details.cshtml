@@ -1,0 +1,277 @@
+@model DevPortfolio.Models.Project
+
+@{
+    ViewData["Title"] = $"Project Details - {Model.Title}";
+    Layout = "_AdminLayout";
+}
+
+<!-- Page Header with Breadcrumb -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="display-6">
+            <i class="bi bi-kanban text-primary"></i> Project Details
+        </h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a asp-area="Admin" asp-controller="Projects" asp-action="Index">
+                        <i class="bi bi-kanban"></i> Projects
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <a asp-area="Admin" asp-controller="Projects" asp-action="Edit" asp-route-id="@Model.Id"
+           class="btn btn-warning me-2">
+            <i class="bi bi-pencil-square"></i> Edit Project
+        </a>
+        <a asp-area="Admin" asp-controller="Projects" asp-action="Index"
+           class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Back to List
+        </a>
+    </div>
+</div>
+
+<!-- Project Image Section (if exists) -->
+@if (!string.IsNullOrEmpty(Model.ImageUrl))
+{
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-gradient-primary text-white py-3">
+                    <h5 class="mb-0">
+                        <i class="bi bi-image"></i> Project Preview
+                    </h5>
+                </div>
+                <div class="card-body text-center p-4">
+                    <img src="@Model.ImageUrl"
+                         alt="@Model.Title"
+                         class="img-fluid rounded shadow"
+                         style="max-height: 400px; object-fit: contain;" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Project Details Section -->
+<div class="row">
+    <div class="col-md-8">
+        <!-- Main Information Card -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white py-3">
+                <h5 class="mb-0">
+                    <i class="bi bi-info-circle"></i> Project Information
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th class="bg-light" style="width: 200px;">
+                                    <i class="bi bi-hash"></i> Project ID
+                                </th>
+                                <td>
+                                    <span class="badge bg-secondary fs-6">#@Model.Id</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="bg-light">
+                                    <i class="bi bi-tag"></i> Title
+                                </th>
+                                <td>
+                                    <h4 class="mb-0">@Model.Title</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="bg-light">
+                                    <i class="bi bi-text-paragraph"></i> Description
+                                </th>
+                                <td>
+                                    <p class="mb-0">@Model.Description</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="bg-light">
+                                    <i class="bi bi-code-slash"></i> Technologies
+                                </th>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(Model.Technologies))
+                                    {
+                                        <div class="d-flex flex-wrap gap-2">
+                                            @{
+                                                var technologies = Model.Technologies.Split(new[] { ',', ';', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                                                foreach (var tech in technologies)
+                                                {
+                                                    var cleanTech = tech.Trim().TrimStart('#');
+                                                    if (!string.IsNullOrEmpty(cleanTech))
+                                                    {
+                                                        <span class="badge bg-info text-white p-2">
+                                                            <i class="bi bi-gear"></i> @cleanTech
+                                                        </span>
+                                                    }
+                                                }
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted fst-italic">No technologies specified</span>
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <!-- Links Card -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-success text-white py-3">
+                <h5 class="mb-0">
+                    <i class="bi bi-link-45deg"></i> Project Links
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-3">
+                    <!-- GitHub Link -->
+                    @if (!string.IsNullOrEmpty(Model.GitHubUrl))
+                    {
+                        <a href="@Model.GitHubUrl" target="_blank" class="btn btn-outline-dark btn-lg text-start">
+                            <i class="bi bi-github me-2"></i> GitHub Repository
+                            <i class="bi bi-box-arrow-up-right float-end"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="alert alert-secondary mb-0">
+                            <i class="bi bi-github me-2"></i> No GitHub link provided
+                        </div>
+                    }
+
+                    <!-- Live Demo Link -->
+                    @if (!string.IsNullOrEmpty(Model.LiveUrl))
+                    {
+                        <a href="@Model.LiveUrl" target="_blank" class="btn btn-outline-success btn-lg text-start">
+                            <i class="bi bi-play-circle me-2"></i> Live Demo
+                            <i class="bi bi-box-arrow-up-right float-end"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="alert alert-secondary mb-0">
+                            <i class="bi bi-play-circle me-2"></i> No live demo link provided
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Metadata Card -->
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white py-3">
+                <h5 class="mb-0">
+                    <i class="bi bi-calendar"></i> Metadata
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-clock-history"></i> Created</span>
+                        <span class="badge bg-light text-dark">@DateTime.Now.ToString("MMM dd, yyyy")</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-clock"></i> Last Updated</span>
+                        <span class="badge bg-light text-dark">@DateTime.Now.ToString("MMM dd, yyyy HH:mm")</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-person"></i> Managed by</span>
+                        <span class="badge bg-light text-dark">@User.Identity?.Name</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions Row -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-secondary text-white py-3">
+                <h5 class="mb-0">
+                    <i class="bi bi-lightning"></i> Quick Actions
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-md-3">
+                        <a asp-area="Admin" asp-controller="Projects" asp-action="Edit" asp-route-id="@Model.Id"
+                           class="btn btn-warning w-100 py-3">
+                            <i class="bi bi-pencil-square d-block fs-4"></i>
+                            <span>Edit Project</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a asp-area="Admin" asp-controller="Projects" asp-action="Create"
+                           class="btn btn-success w-100 py-3">
+                            <i class="bi bi-plus-circle d-block fs-4"></i>
+                            <span>Add New</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a asp-area="Admin" asp-controller="Projects" asp-action="Index"
+                           class="btn btn-info w-100 py-3 text-white">
+                            <i class="bi bi-grid-3x3-gap-fill d-block fs-4"></i>
+                            <span>All Projects</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a asp-area="Admin" asp-controller="Projects" asp-action="Delete" asp-route-id="@Model.Id"
+                           class="btn btn-danger w-100 py-3"
+                           onclick="return confirm('Are you sure you want to delete this project? This action cannot be undone.');">
+                            <i class="bi bi-trash d-block fs-4"></i>
+                            <span>Delete Project</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional CSS for styling -->
+<style>
+    .bg-gradient-primary {
+        background: linear-gradient(45deg, #0d6efd, #0a58ca);
+    }
+    .card {
+        border: none;
+        transition: transform 0.2s;
+    }
+    .card:hover {
+        transform: translateY(-2px);
+    }
+    .table th {
+        font-weight: 600;
+        color: #495057;
+    }
+    .badge {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    .btn-outline-dark:hover i, .btn-outline-success:hover i {
+        color: white;
+    }
+</style>

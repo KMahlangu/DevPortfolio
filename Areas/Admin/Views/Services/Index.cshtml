@@ -1,0 +1,90 @@
+@model IEnumerable<DevPortfolio.Models.Service>
+
+@{
+    ViewData["Title"] = "Manage Services";
+    Layout = "_AdminLayout";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="bi bi-gear"></i> Manage Services</h1>
+    <a asp-area="Admin" asp-controller="Services" asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Add New Service
+    </a>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill"></i> @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Icon</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Display Order</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var service in Model.OrderBy(s => s.DisplayOrder))
+                {
+                    <tr>
+                        <td>@service.Id</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(service.IconClass))
+                            {
+                                <i class="bi @service.IconClass fs-4 text-primary"></i>
+                            }
+                        </td>
+                        <td><strong>@service.Title</strong></td>
+                        <td>@service.Description</td>
+                        <td>@service.DisplayOrder</td>
+                        <td>
+                            @if (service.IsActive)
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Inactive</span>
+                            }
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-area="Admin" asp-controller="Services" asp-action="Details"
+                                   asp-route-id="@service.Id" class="btn btn-sm btn-info" title="Details">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a asp-area="Admin" asp-controller="Services" asp-action="Edit"
+                                   asp-route-id="@service.Id" class="btn btn-sm btn-warning" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a asp-area="Admin" asp-controller="Services" asp-action="Delete"
+                                   asp-route-id="@service.Id" class="btn btn-sm btn-danger" title="Delete"
+                                   onclick="return confirm('Are you sure you want to delete @service.Title?');">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @if (!Model.Any())
+        {
+            <div class="text-center py-4">
+                <p class="text-muted">No services found. Click "Add New Service" to create one.</p>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,91 @@
+@model DevPortfolio.Models.Certificate
+
+@{
+    ViewData["Title"] = "Add New Certificate";
+    Layout = "_AdminLayout";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h2><i class="bi bi-plus-circle"></i> Add New Certificate</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="Certificates" asp-action="Create" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label fw-bold"></label>
+                            <input asp-for="Title" class="form-control" placeholder="e.g., Certified Data Scientist" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="IssuingOrganization" class="form-label fw-bold"></label>
+                            <input asp-for="IssuingOrganization" class="form-control" placeholder="e.g., Microsoft, Google, ALX" />
+                            <span asp-validation-for="IssuingOrganization" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="IssueDate" class="form-label fw-bold"></label>
+                                <input asp-for="IssueDate" class="form-control" type="date" />
+                                <span asp-validation-for="IssueDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ExpirationDate" class="form-label fw-bold"></label>
+                                <input asp-for="ExpirationDate" class="form-control" type="date" />
+                                <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+                                <small class="text-muted">Leave blank if no expiration</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CredentialId" class="form-label fw-bold"></label>
+                            <input asp-for="CredentialId" class="form-control" placeholder="e.g., ABC123XYZ" />
+                            <span asp-validation-for="CredentialId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CredentialUrl" class="form-label fw-bold"></label>
+                            <input asp-for="CredentialUrl" class="form-control" placeholder="https://example.com/verify/123" />
+                            <span asp-validation-for="CredentialUrl" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="SkillsGained" class="form-label fw-bold"></label>
+                            <input asp-for="SkillsGained" class="form-control" placeholder="e.g., C#, ASP.NET, SQL" />
+                            <span asp-validation-for="SkillsGained" class="text-danger"></span>
+                            <small class="text-muted">Separate skills with commas</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">PDF Certificate</label>
+                            <input type="file" name="pdfFile" class="form-control" accept=".pdf" />
+                            <small class="text-muted">Upload PDF file (max 5MB)</small>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Create Certificate
+                            </button>
+                            <a asp-area="Admin" asp-controller="Certificates" asp-action="Index"
+                               class="btn btn-secondary">
+                                <i class="bi bi-x-circle"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
